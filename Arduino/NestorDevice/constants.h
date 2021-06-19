@@ -1,3 +1,6 @@
+#define SETUP_COMMAND_SIZE 8
+#define EP0_PIPE_SIZE 8
+
 //CH376 pins to Arduino digital connections mapping
 
 #define CH_RD 3
@@ -58,3 +61,41 @@
 #define USB_INT_USB_SUSPEND 0x05
 #define USB_INT_WAKE_UP 0x06
 
+// Constants for setting endpoint work mode
+
+#define SET_ENDP_NAK 14
+#define SET_ENDP_STALL 15        
+#define SET_ENDP_RX 0
+#define SET_ENDP_TX 1
+
+// Constants for examining SETUP requests
+
+#define BM_REQ_TYPE_MASK 0x60
+#define BM_REQ_TYPE_STD 0
+
+// USB descriptor codes
+
+#define USB_DESC_DEVICE 1
+#define USB_DESC_CONFIGURATION 2
+#define USB_DESC_STRING 3
+#define USB_DESC_INTERFACE 4
+#define USB_DESC_ENDPOINT = 5
+
+// USB string descriptor ids
+
+#define STRING_DESC_MANUFACTURER 1
+#define STRING_DESC_PRODUCT 2
+
+// USB requests
+
+// IN
+#define USB_REQ_GET_CONFIGURATION 8
+#define USB_REQ_GET_DESCRIPTOR 6
+#define USB_REQ_GET_INTERFACE 10
+#define USB_REQ_GET_STATUS 0
+
+//OUT
+#define USB_REQ_CLEAR_FEATURE 1
+#define USB_REQ_SET_ADDRESS 5
+#define USB_REQ_SET_CONFIGURATION 8
+#define USB_REQ_SET_FEATURE 3
