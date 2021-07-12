@@ -1,0 +1,42 @@
+﻿;Key mappings for RDServer for Canon V-20 with UK keyboard
+;By Konamiman, 7/2021
+
+
+;0:  7     6     5     4     3      2         1         0
+    NUM_7 NUM_6 NUM_5 NUM_4 NUM_3 NUM_2,F12 NUM_1,F11 NUM_0 
+
+;1:   ;:         ]}        [{        \|       =+    -_   9      8
+   Semicolon Rightbrace Leftbrace Backslash Equal Minus NUM_9 NUM_8
+
+;2: B   A        Accent          /?     .>    ,<     Pound~    '"
+    B   A   Mod_LAlt,Mod_RAlt   Slash   Dot  Comma   Grave  Apostrophe
+
+;3
+    J I H G F E D C
+
+;4
+    R Q P O N M L K
+
+;5
+    Z Y X W V U T S
+
+;6:   F3    F2     F1      Code       Caps      Graph      Ctrl        Shift
+    F3,F8  F2,F7  F1,F6  Mod_Rmeta  Capslock   Mod_Lmeta  Mod_LCtrl  Mod_LShift
+
+;7: Return    Select        Bs      Stop   Tab  Esc    F5     F4
+    Enter  MSX_Modifier  Backspace  Pause  Tab  Esc  F5,F10  F4,F9
+
+;8: Right      Down           Up     Left    Del    Ins      Home    Space
+    Right  Down,PageDown  Up,PageUp  Left  Delete  Insert  Home,End  Space
+
+
+; Special keys and key combinations:
+;
+; SELECT + Up, Down: PgUp, PgDown
+; SELECT + HOME: End
+; GRAPH: Left meta (OS) key
+; CODE: Right meta (OS) key
+; SELECT + F1-F5: F6-F10
+; SELECT + 1, 2: F11, F12
+; Accents: left ALT
+; SELECT + Accents: right ALT

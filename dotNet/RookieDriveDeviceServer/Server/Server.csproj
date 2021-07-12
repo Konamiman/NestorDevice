@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>RDServer</AssemblyName>
+    <Authors>Konamiman</Authors>
+    <Company />
+    <RootNamespace>Konamiman.RookieDriveDeviceServer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="KeyMappings_Canon_V20_UK.txt" />
+    <None Remove="KeyMappings_TurboR.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="KeyMappings_Canon_V20_UK.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KeyMappings_TurboR.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WinUSBNet\WinUSBNet.csproj" />
+  </ItemGroup>
+
+</Project>
