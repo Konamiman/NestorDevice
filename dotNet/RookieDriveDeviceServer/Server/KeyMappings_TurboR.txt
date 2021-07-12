@@ -5,11 +5,11 @@
 ;0:  7     6     5     4     3      2         1         0
     NUM_7 NUM_6 NUM_5 NUM_4 NUM_3 NUM_2,F12 NUM_1,F11 NUM_0 
 
-;1:    ;           [{     @      Yen      ^      -      9     8
-    Semicolon  Leftbrace  .   Backslash   .    Minus  NUM_9  NUM_8
+;1:    ;          [{        @       Yen        ^        -      9     8
+    Semicolon  Leftbrace  Grave   Backslash   Equal    Minus  NUM_9  NUM_8
 
-;2: B   A   _     /?    .>     ,<        ]}      :
-    B   A   .   Slash   Dot   Comma  Rightbrace  .
+;2: B   A     _      /?    .>     ,<        ]}          :
+    B   A   Minus   Slash   Dot   Comma  Rightbrace  Apostrophe
 
 ;3:
     J I H G F E D C
@@ -30,16 +30,13 @@
     Right  Down,PageDown  Up,PageUp  Left  Delete  Insert  Home,End  Space
 
 ;9: 4        3      2      1      0       /        +        *
-    NUM_4  NUM_3  NUM_2  NUM_1  NUM_0  KPSlash   KPPus  KPAsterisk
+    NUM_4  NUM_3  NUM_2  NUM_1  NUM_0  KPSlash   KPPlus  KPAsterisk
 
 ;10:  .    ,      -      9     8     7     6     5
      Dot Comma KPMinus NUM_9 NUM_8 NUM_7 NUM_6 NUM_5
 
 ;11: "Yes" and "No" keys
     . . . . Mod_LAlt . Mod_RAlt .
-
-
-; The following keys are left unmapped: @ ^ :
 
 
 ; Special keys and key combinations:
@@ -55,13 +52,16 @@
 
 ; The following key combinations are different from what the MSX keyboard displays:
 ;
-; SHIFT + 2 = @
-; SHIFT + 3 = #
-; SHIFT + 6 = ^
-; SHIFT + 7 = &
-; SHIFT + 8 = *
-; SHIFT + 9 = (
-; SHIFT + 0 = )
-; SHIFT + - = _
-; SHIFT + ; = :
-; Yen = \
+; SHIFT + 2 --> @
+; SHIFT + 3 --> #
+; SHIFT + 6 --> ^
+; SHIFT + 7 --> &
+; SHIFT + 8 --> *
+; SHIFT + 9 --> (
+; SHIFT + 0 --> )
+; SHIFT + - --> _
+; SHIFT + ; --> :
+; Yen --> \ (+ SHIFT --> |)
+; : --> ' (+ SHIFT --> ")
+; ^ --> = (+ SHIFT --> +)
+; @ --> ` (+ SHIFT --> ~)

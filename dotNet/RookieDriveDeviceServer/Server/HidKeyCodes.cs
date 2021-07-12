@@ -184,10 +184,6 @@
         MEDIA_SLEEP = 0xf8,
         MEDIA_COFFEE = 0xf9,
         MEDIA_REFRESH = 0xfa,
-        MEDIA_CALC = 0xfb,
-
-        AT = 0xce,
-        HAT = 0xc3,
-        COLON = 0xCB
+        MEDIA_CALC = 0xfb
     };
 }
