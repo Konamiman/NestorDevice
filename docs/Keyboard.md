@@ -12,7 +12,7 @@ Meanwhile, a server program on the PC will listen to this endpoint and as soon a
 
 ## What do I need?
 
-* An MSX computer (any model will do) and a Rookie Drive cartridge.
+* An MSX computer (any model with at least 16K of RAM will do) and a Rookie Drive cartridge.
 * An USB cable **with the power connector cut or blocked**. Please read [the main README file](https://github.com/Konamiman/NestorDevice/blob/main/README.md) for details on this.
 * A PC running a 64-bit edition of Windows 7, 8 or 10. Please read [the main README file](https://github.com/Konamiman/NestorDevice/blob/main/README.md) for details on why this is the case and why I haven't implemented a HID compliant device on the MSX side.
 
