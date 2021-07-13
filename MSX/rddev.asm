@@ -1,10 +1,10 @@
-; USB keyboard reporter for MSX with Rookie Drive
+; USB keyboard reporter for MSX using a CH372/5/6
 ; By Konamiman, 7/2021
 ;
-; Configures the CH376 in device (CH372 compatible)
-; with internal firmware mode and checks the keyboard status
-; continuously, if there's any change it sends two bytes
-; (row number + row data) to interrupt endpoint 81h.
+; Configures the CH372 in internal firmware mode and checks
+; the keyboard status continuously, if there's any change
+; it sends two bytes (row number + row data) to interrupt
+; endpoint 81h.
 ;
 ; A circular queue is used in case keyboard status changes 
 ; happen faster than the USB host reads them from the endpoint.
@@ -18,10 +18,10 @@
 
 ;Device identification
 ;NOTE! If you change these, update INFO_S too
-VID_LOW: equ 09h
-VID_HIGH: equ 12h
-PID_LOW: equ 07h
-PID_HIGH: equ 00h
+VID_LOW:	equ	09h
+VID_HIGH:	equ	12h
+PID_LOW:	equ	07h
+PID_HIGH:	equ	00h
 
 ;0: Generate .BIN file
 ;1: Generate ROM file
@@ -36,13 +36,14 @@ DEBUG_LOG:	equ	0
 
 ;* MSX BIOS and work area
 
-INITXT: equ 006Ch
-CHGET: equ 009Fh
+INITXT:	equ	006Ch
+CHGET:	equ	009Fh
 CHPUT:	equ	00A2h
-ERAFNK: equ 00CCh
-SNSMAT: equ 0141h
+ERAFNK:	equ	00CCh
+SNSMAT:	equ	0141h
+KILBUF:	equ	0156h
 
-LINL40: equ 0F3AEh
+LINL40:	equ	0F3AEh
 
 
 ;* Z80 ports where the CH372 ports are mapped
@@ -97,11 +98,11 @@ INT_WAKE_UP:	equ	06h
 
 	else
 
-	org 0C010h-7
-	db 0FEh
-	dw PROG_START
-	dw PROG_END
-	dw PROG_START
+	org	0C010h-7
+	db	0FEh
+	dw	PROG_START
+	dw	PROG_END
+	dw	PROG_START
 
 	endif
 
@@ -110,21 +111,21 @@ PROG_START:
 	add	hl,sp
 	ld	(SAVE_SP),hl
 
-	ld a,40
-    ld (LINL40),a
-    call INITXT
-    call ERAFNK
-
 	di
 	call	CH_INIT
 
-	ld hl,INFO_S
-	call PRINT
+	ld	a,40
+	ld	(LINL40),a
+	call	INITXT
+	call	ERAFNK
+
+	ld	hl,INFO_S
+	call	PRINT
 
 LOOP:
-	ld a,(OLD_KEYS+7)
-	and 11010100b
-	jp z,EXIT	;ENTER+SELECT+STOP+ESC pressed
+	ld	a,(OLD_KEYS+7)
+	and	10010100b
+	jp	z,EXIT	;ENTER+STOP+ESC pressed
 
 	in	a,(CH_COMMAND_PORT)
 	and	80h
@@ -195,7 +196,6 @@ CH_INIT:
 	ei
 	halt
 	halt
-	halt
 	di
 
 	ld	a,CHECK_EXIST
@@ -208,7 +208,6 @@ CH_INIT:
 	jp	nz,PREXIT
 
 	ei
-	halt
 	halt
 	halt
 	di
@@ -231,7 +230,6 @@ CH_INIT:
 	ei
 	halt
 	halt
-	halt
 	di
 	in	a,(CH_DATA_PORT)
 	cp	CMD_RET_SUCCESS
@@ -243,7 +241,6 @@ CH_INIT:
 	ld	a,2	;Internal firmware mode
 	out	(CH_DATA_PORT),a
 	ei
-	halt
 	halt
 	halt
 	di
@@ -301,7 +298,7 @@ HANDLE_CH_INT:
 	cp	INT_EP1_IN
 	jp	z,HANDLE_EP1_IN
 
-	if DEBUG_LOG = 1
+	if	DEBUG_LOG = 1
 
 	ld	hl,UNK_INT_S
 	push	af
@@ -326,8 +323,8 @@ DO_UNLOCK:
 HANDLE_SUSPEND:
 	ld	a,ENTER_SLEEP
 	out	(CH_COMMAND_PORT),a
-	
-	if DEBUG_LOG=1
+
+	if	DEBUG_LOG=1
 	ld	hl,SUSPEND_S
 	call	PRINT
 	endif
@@ -335,7 +332,7 @@ HANDLE_SUSPEND:
 	ret
 
 HANDLE_WAKEUP:
-	if DEBUG_LOG=1
+	if	DEBUG_LOG=1
 	ld	hl,WAKEUP_S
 	call	PRINT
 	endif
@@ -385,16 +382,23 @@ SEND_EP1_LOOP:
 PREXIT:
 	call	PRINT
 
-	if ROM=1
-	ld hl,PRESSK_S
-	call PRINT
-	call CHGET
+	if	ROM=1
+	ld	hl,PRESSK_S
+	call	PRINT
+	call	CHGET
 	endif
 
 
 ;--- Exit program
 
 EXIT:
+	ld	a,SET_USB_MODE
+	out	(CH_COMMAND_PORT),a
+	xor	a	;Invalid device mode
+	out	(CH_DATA_PORT),a
+
+	call	KILBUF
+
 	ld	hl,(SAVE_SP)
 	ld	sp,hl
 	ret
@@ -412,7 +416,7 @@ PRINT:
 	jr	PRINT
 
 
-	if DEBUG_LOG = 1
+	if	DEBUG_LOG = 1
 
 ;--- Print byte passed in A in hex
 
@@ -512,14 +516,18 @@ DO_RET:
 ;***********
 
 INFO_S:
-	db "I'm an USB device, VID=1209h, PID=0007h",13,10
-	db 13,10
-	db "I'll send changes in keyboard status",13,10
-	db "to endpoint 81h (max length: 8 bytes)",13,10
-	db "as byte pairs: row number, row data",13,10
-	db 13,10
-	db "Exit: SELECT + STOP + ESC + ENTER",13,10
-	db 0
+	db	"I'm an USB device, VID=1209h, PID=0007h",13,10
+	db	13,10
+	db	"I'll send changes in keyboard status",13,10
+	db	"to endpoint 81h (max length: 8 bytes)",13,10
+	db	"as byte pairs: row number, row data",13,10
+	db	13,10
+	db	"Exit: ESC + ENTER + STOP",13,10
+	if	ROM=0
+	db	"      (press STOP last)",13,10
+	endif
+	db	27,120,53	;Hide the cursor
+	db	0
 
 NO_CH_S:
 	db	"*** CH732 not found"
@@ -532,14 +540,14 @@ CH_MODE_ERR_S:
 UNK_INT_S:
 	db	"*** Unknown interrupt received: ",0
 
-	if ROM = 1
+	if	ROM = 1
 
 PRESSK_S:
-	db 13,10,"Press any key to exit ",0
+	db	13,10,"Press any key to exit ",0
 
 	endif
 
-	if DEBUG_LOG = 1
+	if	DEBUG_LOG = 1
 
 SUSPEND_S:
 	db	"SUSPEND",13,10,0
@@ -564,7 +572,7 @@ VAR_START:
 
 ;Stack pointer at program start time,
 ;used to restore it at exit time
-SAVE_SP: equ VAR_START
+SAVE_SP:	equ	VAR_START
 
 ;Previous state of keyboard, one byte per row
 OLD_KEYS:	equ	SAVE_SP+2
@@ -578,7 +586,7 @@ QUEUE_RDPNT:	equ	QUEUE_WRPNT+2
 QUEUE_LEN:	equ	QUEUE_RDPNT+2
 QUEUE:	equ	0C500h
 
-	if ROM=1
+	if	ROM=1
 	;Force ROM size to be 16K to make emulators and flash loaders happy
 	ds	8000h-$,0FFh
 	endif
