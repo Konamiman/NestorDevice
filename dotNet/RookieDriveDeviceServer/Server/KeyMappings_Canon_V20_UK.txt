@@ -38,5 +38,6 @@
 ; CODE: Right meta (OS) key
 ; SELECT + F1-F5: F6-F10
 ; SELECT + 1, 2: F11, F12
-; Accents: left ALT
-; SELECT + Accents: right ALT
+; Accent: left ALT
+; SELECT + Accent: right ALT
+; Pound: `

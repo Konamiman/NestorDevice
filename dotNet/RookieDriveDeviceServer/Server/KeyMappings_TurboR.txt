@@ -41,13 +41,13 @@
 
 ; Special keys and key combinations:
 ;
-; "Yes" and "No" keys: left and right ALT
-; SELECT + Up, Down: PgUp, PgDown
-; SELECT + HOME: End
-; GRAPH: Left meta (OS) key
-; KANA: Right meta (OS) key
-; SELECT + F1-F5: F6-F10
-; SELECT + 1, 2: F11, F12
+; "Yes" and "No" keys --> left and right ALT
+; SELECT + Up, Down --> PgUp, PgDown
+; SELECT + HOME --> End
+; GRAPH --> Left meta (OS) key
+; KANA --> Right meta (OS) key
+; SELECT + F1-F5 --> F6-F10
+; SELECT + 1, 2 --> F11, F12
 
 
 ; The following key combinations are different from what the MSX keyboard displays:
