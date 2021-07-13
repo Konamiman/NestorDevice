@@ -285,13 +285,20 @@ $@"Supported parameters (all optional):
             var keyIndex = 0;
             var dataIndex = 0;
             int bit;
-            while (dataIndex < length && keyIndex < report.keys.Length)
+            while (dataIndex < (length-1) && keyIndex < report.keys.Length)
             {
                 var row = buffer[dataIndex];
                 var keyStates = buffer[dataIndex + 1];
+
                 if (debugMode)
                 {
                     Write($"{row:X2},{keyStates:X2} ");
+                }
+
+                if (row >= ROWS_COUNT)
+                {
+                    dataIndex++;
+                    continue;
                 }
 
                 if (row == msxModifierKeyRow)
