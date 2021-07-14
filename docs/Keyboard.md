@@ -42,11 +42,11 @@ Follow these steps to setup your computers for the fun, all the required softwar
 
    The virtual keyboard device installed will appear as "Tetherscript Virtual Keyboard" under "Human Interface Devices" in device manager.
 
-6. Download the server program, `RDServer.zip`. Unzip it somewhere.
+6. Download the server program, either `RDServer_SelfContained.zip` or `RDServer_Standalone.zip`. Unzip it somewhere.
 
-   _Note_: There are two variants of the server program: "Standalone" and "Framework Dependant". The later is smaller in size but requires [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1) to be installed separately. The program will be referred as `RDServer.exe` in this guide.
+   _Note_: There are two variants of the server program: "Standalone" and "Framework Dependant". The later is smaller in size but requires [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1) to be installed separately.
 
-7. The previous step will have generated the program files and two text files with keyboard mappings. The server program needs a keyboard mappings files to translate MSX keys to HID keys.
+7. The previous step will have generated the program file, `RDServer.exe`, and two text files with keyboard mappings. The server program needs a keyboard mappings files to translate MSX keys to HID keys.
 
    Two mappings keys files are provided, [one for the Canon V-20 with UK keyboard](https://github.com/Konamiman/NestorDevice/blob/main/dotNet/RookieDriveDeviceServer/Server/KeyMappings_Canon_V20_UK.txt), and [one for the Panasonic FS-A1ST](https://github.com/Konamiman/NestorDevice/blob/main/dotNet/RookieDriveDeviceServer/Server/KeyMappings_TurboR.txt) (the two MSX computers I had at hand). You can use these as is, tweak them to your taste, or use them as the basis to create a completely different file. See [the guide on how to create a mappings file](https://github.com/Konamiman/NestorDevice/blob/main/docs/MappingFiles.md) for details.
 
