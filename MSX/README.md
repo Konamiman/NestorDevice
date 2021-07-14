@@ -4,7 +4,7 @@ This is a small program that will configure the CH376 of the Rookie Drive as "de
 
 The program can be assembled using [Sjasm](https://github.com/Konamiman/Sjasm), or directly from a MSX using Compass.
 
-The ROM version of the program uses RAM above C000h, thus it should work on any MSX having at least 16K of RAM.
+The program uses RAM above C000h, thus it should work on any MSX having at least 16K of RAM.
 
 There are a few interesting constants to consider when assembling the program:
 
